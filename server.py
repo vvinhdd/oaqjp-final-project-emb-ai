@@ -14,6 +14,9 @@ def emot_detector():
     response = emotion_detector(text_to_analyze)
     system_response = "For the given statement, the system response is "
 
+    if response['dominant_emotion'] is None:
+        return "Invalid text! Please try again!"
+
     dynamic_emotions = [(k, v) for k, v in response.items() if k != 'dominant_emotion']
     for i, (key, value) in enumerate(dynamic_emotions):
         score = str(value)
